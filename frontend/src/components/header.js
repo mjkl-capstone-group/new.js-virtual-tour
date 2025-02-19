@@ -1,8 +1,29 @@
+"use client";
+
 import React from "react";
+import "./component.css"
+
+import { useRouter } from "next/navigation";
+
+//This component is for the main page of the website
 
 const Header = () => {
+    const router = useRouter();
+
+    const navigateToDestinations = () => {
+        router.push('/pages/destinations/');
+    };
+
+    const navigateToHome = () => {
+        router.push('/');
+    };
+
+    const navigateToAbout = () => {
+        router.push('/pages/about/');
+    };
+
     return (
-        <nav className="navbar navbar-expand-md fixed-top py-3">
+        <nav className="navbar navbar-expand-md sticky-top py-3">
             <div className="container">
                 <a className="navbar-brand fw-bold" href="#" style={{ color: 'var(--primary-color)' }}>
                     <i className="fas fa-water me-2"></i><span style={{ color: 'black' }}>LEYTEXPLORE</span>
@@ -18,23 +39,17 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <a className="nav-link" href="#home" style={{ color: 'black' }}>
+                            <a className="nav-link" onClick={navigateToHome} style={{ color: 'black', cursor: 'pointer' }}>
                                 Home
                             </a>
                         </li>
-                        <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" id="destinationsDropdown" role="button" data-bs-toggle="dropdown" style={{ color: 'black' }}>
+                        <li className="nav-item">
+                            <a className="nav-link" onClick={navigateToDestinations} style={{ color: 'black', cursor: 'pointer' }}>
                                 Destinations
                             </a>
-                            <ul className="dropdown-menu" aria-labelledby="destinationsDropdown">
-                                <li><a className="dropdown-item" href="#beaches">Beaches</a></li>
-                                <li><a className="dropdown-item" href="#islands">Islands</a></li>
-                                <li><a className="dropdown-item" href="#mountains">Mountains</a></li>
-                                <li><a className="dropdown-item" href="#historical">Historical Sites</a></li>
-                            </ul>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#about" style={{ color: 'black' }}>
+                            <a className="nav-link"  style={{ color: 'black' }}>
                                 About
                             </a>
                         </li>
@@ -43,13 +58,28 @@ const Header = () => {
                                 Community
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="communityDropdown">
-                                <li><a className="dropdown-item" href="#reviews">Reviews</a></li>
-                                <li><a className="dropdown-item" href="#forums">Forums</a></li>
-                                <li><a className="dropdown-item" href="#help">Help/FAQ</a></li>
+                                <li>
+                                    <a className="dropdown-item">
+                                        <i className="fi fi-ss-review me-2"></i>
+                                        Reviews
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="dropdown-item">
+                                        <i className="fi fi-sr-meeting me-2"></i>
+                                        Forums
+                                    </a>
+                                </li>
+                                <li>
+                                    <a className="dropdown-item ">
+                                        <i className="fi fi-ss-comments-question me-2"></i>
+                                        Help/FAQ
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li className="nav-item">
-                            <a className="btn ms-2" href="#tours" style={{ backgroundColor: 'black', color: 'white' }}>
+                            <a className="btn ms-2" href="#discover" style={{ backgroundColor: 'black', color: 'white' }}>
                                 Discover
                             </a>
                         </li>
