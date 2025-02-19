@@ -1,16 +1,26 @@
 "use client";
 
+import React from "react";
 import { useEffect } from "react";
 import AOS from "aos";
 import "./page.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 export default function Home() {
+  const router = useRouter();
+
+  const navigateToSogodBay = () => {
+    router.push('/vr-screens/sogod-bay/');
+  };
 
   useEffect(() => {
-    import("bootstrap/dist/js/bootstrap.bundle.min.js");
+    import("bootstrap/dist/js/bootstrap.min.js");
   }, []);
-  
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -21,17 +31,17 @@ export default function Home() {
 
   return (
     <>
+      {/* Header Section */}
+      <Header />
+
       {/* Hero Section */}
       <section
         className="hero-section"
         id="home"
         data-aos="fade-up"
-        style={{
-          height: "100vh",
-        }}
       >
         <div className="container text-white text-center">
-          <h1 className="display-5 mb-4">Explore Southern Leyte's Hidden Paradise</h1>
+          <h1 className="display-5 mb-3">Explore Southern Leyte's Hidden Paradise</h1>
           <p className="lead-6 mb-4">
             Virtual tours of pristine beaches, majestic islands, and rich marine life
           </p>
@@ -41,78 +51,143 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Destinations */}
+      {/* Featured Destinations 
+      Future updates in this section will include a carousel for the featured destinations section and 
+      the selected destination will base on the user's choice or user's rating. There should only be 3-5
+      featured destinations in the carousel for each category.
+      */}
       <section className="py-5 leyte-bg-pattern" id="destinations">
         <div className="container py-5">
           <h2 className="section-title text-center mb-5" data-aos="fade-up">
             <strong>Featured Destinations</strong>
           </h2>
 
-          <div className="row g-4">
-            {/* Sogod Bay */}
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
-              <div className="destination-card">
-                <Image
-                  src="/assets/photos/sogod-bay.jpg"
-                  width={600}
-                  height={400}
-                  className="img-fluid"
-                  alt="Sogod Bay"
-                  style={{ objectFit: "cover", height: "200px", width: "100%" }}
-                />
-                <div className="p-3 bg-white">
-                  <h4>Sogod Bay</h4>
-                  <p>Dive into the whale shark capital of Southern Leyte</p>
-                  <button className="btn btn-primary" onClick={() => navigateToSample()}>
-                    Virtual Tour
-                  </button>
+          <section className="leyte-bg-pattern" id="destinations">
+            <div className="container py-5">
+
+              {/* Navigation Tabs */}
+              <ul className="nav nav-pills mb-4" id="destinationsTab" role="tablist" data-aos="fade-up" data-aos-delay="100">
+                {[
+                  { id: "beaches", label: "Beaches" },
+                  { id: "islands", label: "Islands" },
+                  { id: "historical", label: "Historical Sites" },
+                  { id: "hotel", label: "Hotels" },
+                  { id: "restaurant", label: "Restaurants" }
+                ].map((category, index) => (
+                  <li className="nav-item" key={category.id} role="presentation">
+                    <button
+                      className={`nav-link ${index === 0 ? "active" : ""}`}
+                      id={`${category.id}-tab`}
+                      data-bs-toggle="tab"
+                      data-bs-target={`#${category.id}`}
+                      type="button"
+                      role="tab"
+                      aria-controls={category.id}
+                      aria-selected={index === 0 ? "true" : "false"}
+                    >
+                      {category.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Tab Content */}
+              <div className="tab-content" id="destinationsTabContent">
+
+                {/* Beaches Tab */}
+                <div className="tab-pane fade show active" id="beaches" role="tabpanel" aria-labelledby="beaches-tab">
+                  <section className="">
+                    <div className="row g-4">
+
+                      {/* Sogod Bay */}
+                      <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                        <div className="destination-card">
+                          <Image src="/assets/photos/sogod-bay.jpg" width={600} height={400} className="img-fluid"
+                            alt="Sogod Bay" style={{ objectFit: "cover", height: "200px", width: "100%" }} />
+                          <div className="p-3 bg-white">
+                            <h4>Sogod Bay</h4>
+                            <p>Dive into the whale shark capital of Southern Leyte</p>
+                            <button className="btn" style={{ color: 'white', background: 'black' }} onClick={navigateToSogodBay}>Virtual Tour</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Tangkaan Beach */}
+                      <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                        <div className="destination-card">
+                          <Image src="/assets/photos/tangkaan.jpg" width={600} height={400} className="img-fluid"
+                            alt="Tangkaan Beach" style={{ objectFit: "cover", height: "200px", width: "100%" }} />
+                          <div className="p-3 bg-white">
+                            <h4>Tangkaan Beach</h4>
+                            <p>White sand beach with stunning sunset views</p>
+                            <button className="btn" style={{ color: 'white', background: 'black' }} onClick={() => navigateToSample()}>Virtual Tour</button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bitoon Beach */}
+                      <div className="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                        <div className="destination-card">
+                          <Image src="/assets/photos/bitoon.jpg" width={600} height={400} className="img-fluid"
+                            alt="Bitoon Beach" style={{ objectFit: "cover", height: "200px", width: "100%" }} />
+                          <div className="p-3 bg-white">
+                            <h4>Bitoon Beach</h4>
+                            <p>Secluded paradise with crystal-clear waters</p>
+                            <button className="btn" style={{ color: 'white', background: 'black' }} onClick={() => navigateToSample()}>Virtual Tour</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                {/* Islands Tab */}
+                <div className="tab-pane fade" id="islands" role="tabpanel" aria-labelledby="islands-tab">
+                  <section className="py-5">
+                    <div className="container py-5">
+                      <div className="row g-4">
+                        <h1>Islands here lods</h1>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                {/* Historical Sites Tab */}
+                <div className="tab-pane fade" id="historical" role="tabpanel" aria-labelledby="historical-tab">
+                  <section className="py-5">
+                    <div className="container py-5">
+                      <div className="row g-4">
+                        <h1>Historical here lods</h1>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                {/* Hotels Tab */}
+                <div className="tab-pane fade" id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+                  <section className="py-5">
+                    <div className="container py-5">
+                      <div className="row g-4">
+                        <h1>Hotels here lods</h1>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+
+                {/* Restaurants Tab */}
+                <div className="tab-pane fade" id="restaurant" role="tabpanel" aria-labelledby="restaurant-tab">
+                  <section className="py-5">
+                    <div className="container py-5">
+                      <div className="row g-4">
+                        <h1>Restaurants here lods</h1>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
+          </section>
 
-            {/* Tangkaan Beach */}
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="200">
-              <div className="destination-card">
-                <Image
-                  src="/assets/photos/tangkaan.jpg"
-                  width={600}
-                  height={400}
-                  className="img-fluid"
-                  alt="Tangkaan Beach"
-                  style={{ objectFit: "cover", height: "200px", width: "100%" }}
-                />
-                <div className="p-3 bg-white">
-                  <h4>Tangkaan Beach</h4>
-                  <p>White sand beach with stunning sunset views</p>
-                  <button className="btn btn-primary" onClick={() => navigateToSample()}>
-                    Virtual Tour
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Napantao Marine Sanctuary */}
-            <div className="col-md-4" data-aos="fade-up" data-aos-delay="300">
-              <div className="destination-card">
-                <Image
-                  src="/assets/photos/bitoon.jpg"
-                  width={600}
-                  height={400}
-                  className="img-fluid"
-                  alt="Bitoon Beach"
-                  style={{ objectFit: "cover", height: "200px", width: "100%" }}
-                />
-                <div className="p-3 bg-white">
-                  <h4>Bitoon Beach</h4>
-                  <p>Secluded paradise with crystal-clear waters</p>
-                  <button className="btn btn-primary" onClick={() => navigateToSample()}>
-                    Virtual Tour
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
         </div>
       </section>
 
@@ -147,6 +222,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Footer Section */}
+      <Footer />
     </>
   );
 }

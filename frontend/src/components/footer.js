@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
+//This component is for the main page of the website
+
 const Footer = () => {
     return (
         <footer className="bg-dark text-white py-5" style={{ minHeight: '300px' }} data-aos="fade-up" data-aos-delay='100'>
@@ -30,10 +32,21 @@ const Footer = () => {
                     <div className="col-md-3">
                         <h4 style={{ fontSize: '1.2rem' }}>Follow Us</h4>
                         <div className="d-flex gap-3">
-                            <a href="#" className="text-white">
-                                <i className="fab fa-facebook fa-lg"></i>
+                            <a
+                                href="https://www.facebook.com/mcrromawak/"
+                                className="text-white"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <i className="fab fa-facebook fa-lg">
+                                </i>
                             </a>
-                            <a href="#" className="text-white">
+                            <a
+                                href="https://www.instagram.com/romawakmatt/"
+                                className="text-white"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 <i className="fab fa-instagram fa-lg"></i>
                             </a>
                             <a href="#" className="text-white">
@@ -57,19 +70,19 @@ const Footer = () => {
                 <div className="row mt-4 align-items-center">
                     {/* Acknowledgment and Logos */}
                     <div className="col-md-6 d-flex gap-3">
-                        <Image 
-                        src="/assets/logos/leyte_normal_university.png" 
-                        alt="Leyte Normal University" 
-                        width={50} 
-                        height={50} 
-                        title='Leyte Normal University'
+                        <Image
+                            src="/assets/logos/leyte_normal_university.png"
+                            alt="Leyte Normal University"
+                            width={50}
+                            height={50}
+                            title='Leyte Normal University'
                         />
-                        <Image 
-                        src="/assets/logos/department_of_tourism.png" 
-                        alt="Department of Tourism" 
-                        width={50} 
-                        height={50} 
-                        title='Department of Tourism'
+                        <Image
+                            src="/assets/logos/department_of_tourism.png"
+                            alt="Department of Tourism"
+                            width={50}
+                            height={50}
+                            title='Department of Tourism'
                         />
                     </div>
 

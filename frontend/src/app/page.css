@@ -6,13 +6,14 @@
 body {
   font-family: 'Poppins', sans-serif;
 }
+
 .navbar {
   background: white !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .hero-section {
-  height: 100vh;
+  height: 90vh;
   background: linear-gradient(rgba(26, 68, 108, 0.7), rgba(61, 180, 192, 0.3)),
     url('https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272') center/cover;
   display: flex;
@@ -33,6 +34,20 @@ body {
 .destination-card:hover {
   transform: translateY(-10px);
 }
+
+.nav-pills .nav-link {
+  color: black !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: black !important;
+  color: white !important;
+}
+
+.nav-pills .nav-link:hover {
+  border: 1px solid black !important;
+}
+
 
 .leyte-bg-pattern {
   background-image: radial-gradient(var(--secondary-color) 1px, transparent 1px);
@@ -56,8 +71,8 @@ body {
   background: var(--secondary-color);
 }
 
-#panorama {
-  width: 500px;
-  height: 300px;
+.categories-title {
+  position: relative;
+  display: inline-block;
 }
 
